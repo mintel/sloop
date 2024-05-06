@@ -17,14 +17,14 @@ func TestRedirectHandlerHandler(t *testing.T) {
 		location string
 	}{
 		"successfully redirect on /": {
-			"/",
-			http.StatusTemporaryRedirect,
-			"/clusterContext",
+			url:      "/",
+			code:     http.StatusTemporaryRedirect,
+			location: "/clusterContext",
 		},
 		"return 404 for invalid url": {
-			"/an-invalid-url",
-			http.StatusNotFound,
-			"",
+			url:      "/an-invalid-url",
+			code:     http.StatusNotFound,
+			location: "",
 		},
 	}
 

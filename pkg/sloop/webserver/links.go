@@ -13,7 +13,7 @@ type LinkTemplate struct {
 }
 
 type ResourceLinkTemplate struct {
-	Text        string   `json:"text""`
+	Text        string   `json:"text"`
 	UrlTemplate string   `json:"urlTemplate"`
 	Kinds       []string `json:"kinds"`
 }

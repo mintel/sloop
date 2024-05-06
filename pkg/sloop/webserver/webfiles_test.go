@@ -21,14 +21,14 @@ func Test_BindataReadWebfile_True(t *testing.T) {
 	expectedOutput, err := Asset(filePath)
 	assert.Nil(t, err)
 
-	actualOutput, _ := readWebfile(fileName, &afero.Afero{afero.NewMemMapFs()})
+	actualOutput, _ := readWebfile(fileName, &afero.Afero{Fs: afero.NewMemMapFs()})
 	assert.Equal(t, expectedOutput, actualOutput)
 }
 
 func Test_LocalReadWebfile_True(t *testing.T) {
 	notExpectedOutput, _ := Asset(filePath)
 
-	fs := &afero.Afero{afero.NewMemMapFs()}
+	fs := &afero.Afero{Fs: afero.NewMemMapFs()}
 	fullPath := common.GetFilePath(webFilesPath, fileName)
 	writeFile(t, fs, fullPath, someContents1)
 
@@ -40,7 +40,7 @@ func Test_LocalReadWebfile_True(t *testing.T) {
 
 func Test_FileNotinLocalOrBin(t *testing.T) {
 	fileName := "blah.html"
-	_, err := readWebfile(fileName, &afero.Afero{afero.NewMemMapFs()})
+	_, err := readWebfile(fileName, &afero.Afero{Fs: afero.NewMemMapFs()})
 	assert.Errorf(t, err, errorString, fileName)
 }
 
