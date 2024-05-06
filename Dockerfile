@@ -7,7 +7,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN go build -o sloop ./pkg/sloop
+RUN CGO_ENABLED=0 go build -o sloop ./pkg/sloop
 
 FROM gcr.io/distroless/base
 
